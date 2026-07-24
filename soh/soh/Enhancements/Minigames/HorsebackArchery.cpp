@@ -61,9 +61,10 @@ static void RegisterHorsebackArcheryAmmo() {
 
 static void RegisterHorsebackArcheryBothPrizes() {
     COND_VB_SHOULD(VB_END_HORSEBACK_ARCHERY, CVAR_ARCHERY_BOTH_PRIZES_VALUE, {
-        EnGe1* enGe1 = va_arg(args, EnGe1*);
-        enGe1->actionFunc = EnGe1_TalkAfterGame_Archery;
-        *should = false;
+        if (!Flags_GetInfTable(INFTABLE_190) || !Flags_GetItemGetInf(ITEMGETINF_0F)) {
+            EnGe1* enGe1 = va_arg(args, EnGe1*);
+            enGe1->actionFunc = EnGe1_TalkAfterGame_Archery;
+        }
     })
 }
 

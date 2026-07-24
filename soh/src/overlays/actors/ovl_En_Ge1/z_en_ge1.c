@@ -511,15 +511,15 @@ void EnGe1_WaitTillItemGiven_Archery(EnGe1* this, PlayState* play) {
         return;
     }
     if (Actor_HasParent(&this->actor, play)) {
-        if (GameInteractor_Should(VB_END_HORSEBACK_ARCHERY, true, this)) {
-            this->actionFunc = EnGe1_SetupWait_Archery;
-        }
+        this->actionFunc = EnGe1_SetupWait_Archery;
 
         if (this->stateFlags & GE1_STATE_GIVE_QUIVER) {
             Flags_SetItemGetInf(ITEMGETINF_0F);
         } else {
             Flags_SetInfTable(INFTABLE_190);
         }
+
+        GameInteractor_Should(VB_END_HORSEBACK_ARCHERY, true, this);
     } else {
         if (this->stateFlags & GE1_STATE_GIVE_QUIVER) {
             switch (CUR_UPG_VALUE(UPG_QUIVER)) {
